@@ -1,0 +1,7 @@
+/node_modules
+/dist
+/.tmp
+/.sass-cache
+/bower_components
+bluegallo.sublime-project
+bluegallo.sublime-workspace
