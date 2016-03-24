@@ -9,24 +9,26 @@
  * Main module of the application.
  */
 angular
-  .module('bluegalloApp', [
-    'ngAnimate',
-    'ngRoute',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+    .module('bluegalloApp', [
+        'ngAnimate',
+        'ngTouch',
+        'ui.router'
+    ])
+    .config(function($stateProvider, $urlRouterProvider){
+        $urlRouterProvider.otherwise("/");
+
+        $stateProvider
+            .state('biography', {
+                url: '/bio',
+                templateUrl: 'views/biography.html'
+            })
+            .state('projects', {
+                url: '/projects',
+                templateUrl: 'views/projects.html'
+            })
+            .state('discography', {
+                url: '/discography',
+                templateUrl: 'views/discography.html'
+            });
+
+    });
