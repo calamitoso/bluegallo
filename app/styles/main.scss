@@ -18,3 +18,33 @@ header{
         }
     }
 }
+
+.rg{
+    &-header{
+        h1{
+            line-height: 1;
+            margin: 0;
+        }
+        &-nav{
+            background-color: #ccc;
+        }
+    }
+
+    &-container{
+
+    }
+
+    &-video-player{
+        background-color: #ccc;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: -360px;
+        padding: 10px;
+        width: 400px;
+
+        &-open{
+            right: 0;
+        }
+    }
+}

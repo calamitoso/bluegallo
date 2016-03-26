@@ -17,26 +17,31 @@
 
     <body ng-app="bluegalloApp">
 
-        <div class="row">
-            <div class="columns">
-                <header>
-                    <h1><a ui-sref="home">Bluegallo</a></h1>
-                    <ul class="nav navbar-nav">
-                        <li><a ui-sref="biography">Biography</a></li>
-                        <li><a ui-sref="projects">Projects</a></li>
-                        <li><a ui-sref="discography">Discography</a></li>
-                    </ul>
-                </header>
-            </div>
+        <div class="rg-content">
 
-            <div class="columns large-6">
-                <div ui-view></div>
-            </div>
+            <div class="row">
+                <div class="columns">
+                    <header class="rg-header">
+                        <a ui-sref="main.home" >
+                            <h1>Ricardo Gallo</h1>
+                            <span>Composer and pianist</span>
+                        </a>
+                        <ul class="rg-header-nav">
+                            <li><a ui-sref="main.biography">Biography</a></li>
+                            <li><a ui-sref="main.projects">Projects</a></li>
+                            <li><a ui-sref="main.discography">Discography</a></li>
+                        </ul>
+                    </header>
+                </div>
 
-            <div class="columns large-6">
-                <iframe src="https://player.vimeo.com/video/101351587" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <div class="columns large-12">
+                    <div ui-view></div>
+                </div>
+
             </div>
         </div>
+
+        <div ui-view="video-player"></div>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
         <script>
@@ -63,6 +68,8 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/video-player.js"></script>
+        <script src="scripts/services/video-player.js"></script>
         <!-- endbuild -->
     </body>
 </html>
