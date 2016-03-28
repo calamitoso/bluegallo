@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="bluegalloApp">
     <head>
         <meta charset="utf-8">
         <title></title>
@@ -10,12 +10,13 @@
         <!-- bower:css -->
         <!-- endbower -->
         <!-- endbuild -->
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,100,700,400italic' rel='stylesheet' type='text/css'>
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
     </head>
 
-    <body ng-app="bluegalloApp">
+    <body ng-class="{'video-player-open' : videoPlayerOpen}">
 
         <div class="rg-content">
 
@@ -23,8 +24,7 @@
                 <div class="columns">
                     <header class="rg-header">
                         <a ui-sref="main.home" >
-                            <h1>Ricardo Gallo</h1>
-                            <span>Composer and pianist</span>
+                            <h2>Ricardo Gallo, <span class="subheader">composer and pianist</span></h2>
                         </a>
                         <ul class="rg-header-nav">
                             <li><a ui-sref="main.biography">Biography</a></li>
@@ -63,6 +63,7 @@
         <script src="bower_components/what-input/what-input.js"></script>
         <script src="bower_components/foundation-sites/dist/foundation.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/lodash/lodash.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -70,6 +71,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/video-player.js"></script>
         <script src="scripts/services/video-player.js"></script>
+        <script src="scripts/services/web-service.js"></script>
         <!-- endbuild -->
     </body>
 </html>

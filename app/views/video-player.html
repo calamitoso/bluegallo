@@ -1,9 +1,9 @@
-<div ng-show="getVideoAvailable()" class="rg-video-player" ng-class="{'rg-video-player-open': getPanelStatus() }">
-    <div><a ng-click="togglePlayer()">Toggle player</a></div>
-    <div><a ng-click="closePlayer()">Close player</a></div>
-    <div ng-hide="!getPanelStatus()">
-        <div ng-bind-html="getEmbedCode()"></div>
-        <h3>Video title</h3>
-        <p>Lorem ipsum</p>
+<div ng-if="getVideoAvailable()" class="rg-video-player" ng-show="getPlayerStatus()">
+    <div><a class="button hollow warning" ng-click="togglePlayer()"><i class="fa" ng-class="getPlayerStatus() ? 'fa-caret-right' : 'fa-caret-left'"></i>&nbsp;Toggle player</a></div>
+    <!-- <div><a ng-click="closePlayer()">Close player</a></div> -->
+    <div ng-show="getPlayerStatus()">
+        <div class="flex-video" ng-bind-html="getEmbedCode()"></div>
+        <p>{{videoInfo.title}}</p>
+        <p><small>{{videoInfo.description}}</small></p>
     </div>
 </div>

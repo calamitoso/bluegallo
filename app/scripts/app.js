@@ -48,4 +48,7 @@ angular
                     templateUrl: 'views/discography.html'
                 });
 
-    });
+    })
+    .factory('_', ['$window', function($window) {
+        return $window._;
+    }]);

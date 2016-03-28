@@ -14,50 +14,57 @@ angular.module('bluegalloApp')
             '$stateParams',
             '$sce',
             'videoPlayerService',
-            function ($scope, $stateParams, $sce, videoPlayerService) {
+            '$rootScope',
+            function ($scope, $stateParams, $sce, videoPlayerService, $rootScope) {
 
-
-                
-                
-                //itialize status var
-                //todo get from service
                 //todo filter out non numeric video ids
 
+                //initialize videoPlayerService
                 videoPlayerService.setVideo($stateParams.vid);
-                var isPanelOpened;
+
+                var isPlayerOpen = !!videoPlayerService.getCurrentVideo();
 
                 var togglePlayer = function(){
-                    isPanelOpened = !isPanelOpened;
+                    isPlayerOpen = !isPlayerOpen;
+                    $rootScope.videoPlayerOpen = isPlayerOpen;
                 };
 
                 var closePlayer = function(){
-                    isPanelOpened = false;
+                    isPlayerOpen = false;
                     videoPlayerService.setVideo(null);
-                    // $location.search('vid', isPanelOpened ? videoPlayerService.getCurrentVideo() : null);
                 };
 
-                var getPanelStatus = function(){
-                    return isPanelOpened;
+                var getPlayerStatus = function(){
+                    return isPlayerOpen;
                 };
 
                 var getEmbedCode = function(){
-                    return videoPlayerService.getCurrentVideo() ?
-                        $sce.trustAsHtml(videoPlayerService.getCurrentVideo().embedCode) : null;
+                    var currentVideo = videoPlayerService.getCurrentVideo();
+                    return currentVideo ?
+                        $sce.trustAsHtml(videoPlayerService.getEmbedCode(currentVideo)) : null;
                 };
+
+                (function(){
+                    var currentVideo = videoPlayerService.getCurrentVideo();
+                    if(currentVideo && currentVideo.type === 'YOUTUBE'){
+                        videoPlayerService.getVideoInfo(currentVideo)
+                            .then(function(response){
+                                $scope.videoInfo = response.data.items[0].snippet;
+                                console.log($scope.videoInfo);
+                            });
+                    }
+                })();
 
                 var getVideoAvailable = function(){
                     return !!videoPlayerService.getCurrentVideo();
                 };
 
-                //initialize panel status
-                isPanelOpened = !!videoPlayerService.getCurrentVideo();
-
                 angular.extend($scope, {
                     togglePlayer: togglePlayer,
                     closePlayer: closePlayer,
-                    getPanelStatus: getPanelStatus,
+                    getPlayerStatus: getPlayerStatus,
                     getEmbedCode: getEmbedCode,
-                    getVideoAvailable: getVideoAvailable
+                    getVideoAvailable: getVideoAvailable,
                 });
             }
         ]
